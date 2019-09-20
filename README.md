@@ -1,7 +1,8 @@
 # 本次更新内容
 
-1. 文献查找方法（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E6%9F%A5%E6%89%BE%E6%96%87%E7%8C%AE%E6%8A%80%E5%B7%A7)）。
-2. 本次讨论班ppt以及问答记录（问答记录在本页末，[点击直达](##2019.09.20记录)）
+1. 新增金融风险部分文献（于建玲师姐提供，[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E7%A0%94%E8%AE%A8%E7%8F%AD%E6%96%87%E7%8C%AE%E5%88%86%E4%BA%AB%E9%9B%86)）
+2. 文献查找方法（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E6%9F%A5%E6%89%BE%E6%96%87%E7%8C%AE%E6%8A%80%E5%B7%A7)）。
+3. 本次讨论班ppt以及问答记录（问答记录在本页末，[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3#20190920%E8%AE%B0%E5%BD%95)）
 
 # 讨论班安排
 
