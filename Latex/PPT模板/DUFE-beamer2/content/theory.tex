@@ -1,0 +1,173 @@
+\section{理论分析} 
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{理论分析}
+\framesubtitle{理论机制分析}
+
+对于贫困地区而言，获得转移支付资金增加对地区经济增长的影响渠道，有直
+接效果和间接效果两个方面
+\begin{itemize}
+	\item 直接效果:如何支出转移支付（激励所决定）
+		\begin{itemize}
+			\item 官员自身消耗
+			\item 公共物品
+		\end{itemize}
+	\item 间接效果
+		\begin{itemize}
+			\item 无激励，低效率使用
+			\item GDP \textuparrow ，所获转移支付 \textdownarrow ，负向
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+
+
+
+
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{理论分析}
+	\framesubtitle{理论模型分析}
+	\begin{small}
+
+	考虑地方政府竞争模型。$N$个地方政府，$K$单位私人资本，私人资本可以自由跨区流动，企业由私人投资，
+	采用$C-D$生产函数。
+	\begin{align}
+	F_i=A_ik_i^\alpha P_i^\beta
+	\end{align}
+	地方政府：
+	\begin{align}
+	U_i = F_i+\lambda _i ln(c_i)\\
+	P_i+c_i = S_i+tF_i
+	\end{align}
+	考虑无条件均等性转移支付：
+	\begin{align}
+	S_i^g=\sigma_i (F^0-F_i)
+	\end{align}
+	$F$产出，$P$公共物品，$\lambda$政府自我关心程度，$c$政府自身消费，$S$转移支付，$t$地方税率，$\tau$中央税，$\sigma$转移支付系数。
+	\end{small}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{理论分析}
+	\framesubtitle{理论模型分析}
+	\begin{small}
+		跨地区自由流动，各地区的资本净回报率都相同:
+		\begin{align}
+		(1-t-\tau) \frac{\partial F_i}{\partial k_i} = r
+		\end{align}
+		当第$i$个地方提供公共物品数量为$P_i$时，所能吸引到的私人投资$k_i$满足如下条件：
+		\begin{align}
+		k_i = [\frac{(1-t-\tau)\alpha A_i P_i^\beta}{r}]^{1/(1-\alpha)}
+		\end{align}
+		解(2)式的最大化问题，可以得到如下一阶条件：
+		\begin{align}
+		\frac{\partial F_i}{\partial P_i}+\frac{\partial F_i}{\partial k_i} \frac{\partial P_i}{\partial k_i} =\frac{\lambda_i}{S_i^g+tF_i-P_i+\lambda_i(t-\sigma_i)}
+		\end{align}
+	\end{small}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{理论分析}
+	\framesubtitle{理论模型分析}
+	\begin{small}
+		\[
+				\frac{\partial F_i}{\partial P_i}+\frac{\partial F_i}{\partial k_i} \frac{\partial P_i}{\partial k_i} =\frac{\lambda_i}{S_i^g+tF_i-P_i+\lambda_i(t-\sigma_i)}
+		\]
+		
+		\[
+			\frac{\partial F_i}{\partial P_i}+\frac{\partial F_i}{\partial k_i} \frac{\partial P_i}{\partial k_i}>0
+			\]
+		\[	\frac{\partial (\frac{\partial F_i}{\partial P_i}+\frac{\partial F_i}{\partial k_i} \frac{\partial P_i}{\partial k_i})}{\partial P_i}<0
+		\]
+		
+		对(7)式进行整理可以得到：
+		\begin{align}
+		(t-\sigma_i)(\frac{\partial F_i}{\partial P_i}+\frac{\partial F_i}{\partial k_i} \frac{\partial P_i}{\partial k_i}) = \frac{\lambda_i}{\frac{S_i^g+tF_i-P_i}{t-\sigma_i}+\lambda_i}
+		\end{align}
+		
+		式(8)表明，公共物品每增加1单位，其所带来的地方边际财力增加小于公共物品供给的边际成本。
+	\end{small}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{理论分析}
+	\framesubtitle{理论模型分析}
+	\begin{small}
+	由(7)式可以进一步得到:
+		\begin{align}
+		\frac{\partial P_i}{\partial S_i^g}= \frac{\lambda_i-\frac{\lambda_i^2}{F^0-F_i}}
+		{\lambda_i [1-(t-\sigma_i)\left(\frac{\partial F_i}{\partial P_i}+\frac{\partial F_i}{\partial k_i} \frac{\partial P_i}{\partial k_i}\right)]-B^2A}
+		\end{align}
+		\[
+		A=\frac{\partial (\frac{\partial F_i}{\partial P_i}+\frac{\partial F_i}{\partial k_i} \frac{\partial P_i}{\partial k_i})}{\partial P_i},\qquad
+		B=S_i^g+tF_i-P_i+\lambda_i(t-\sigma_i)
+		\]
+		
+		式(9)表明,当$F_i<F^0-\lambda_i$时，有$\frac{\partial P_i}{\partial S_i^g}>0$,$\frac{\partial F_i}{\partial S_i^g}>0$,进一步有：\[
+		\frac{d^2P_i}{dS_i^g d\sigma_i}<0,\qquad
+		\frac{d^2F_i}{dS_i^g d\sigma_i}<0
+		\]
+		这样，我们得到如下命题1:
+		\[
+		\frac{F_i}{dS_i^g}>0 \qquad
+		\frac{d^2F_i}{dS_i^g d\sigma_i}<0
+		\]
+	\end{small}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{理论分析}
+	\framesubtitle{理论模型分析}
+	\begin{small}
+		考虑带有配套性的有条件转移支付.配套性有条件转移支付的分配公式为:
+		\begin{align}
+		S_i^E = m_iP_i
+		\end{align}
+		可以得到如下一阶条件：
+		\begin{align}
+		\frac{\partial F_i}{\partial P_i}+\frac{\partial F_i}{\partial k_i} \frac{\partial P_i}{\partial k_i} =\frac{\lambda_i}{S_i^E+tF_i-P_i+\lambda_it}
+		\end{align}
+		由(11)式可得：
+		\begin{align}
+		\frac{\partial P_i}{\partial S_i^E}= \frac{(tF_i\lambda_it)\frac{\lambda_i}{P_i}}
+		{\lambda_i(1-m_i) [1-m_i-t\left(\frac{\partial F_i}{\partial P_i}+\frac{\partial F_i}{\partial k_i} \frac{\partial P_i}{\partial k_i}\right)]-B^2A}
+		\end{align}		
+
+	\end{small}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{理论分析}
+	\framesubtitle{理论模型分析}
+	\begin{small}	
+		同理可得到：
+		\[
+		\frac{\partial P_i}{\partial S_i^E}>0\qquad\frac{\partial F_i}{\partial S_i^E}>0\qquad\frac{d^2P_i}{dS_i^E dm_i}>0\qquad\frac{d^2F_i}{dS_i^E dm_i}>0
+		\]
+		
+		得命题2：
+		\[
+		\frac{\partial F_i}{\partial S_i^E}>0\qquad\frac{d^2F_i}{dS_i^E dm_i}>0
+		\]		
+		
+		即一个地区获得的带有配套的专项转移支付数额增加，会导致地方的经济产出增加。随着地方配套率的提高，专项转移支付数额对经济增长的边际效果会增强。
+	\end{small}
+\end{frame}
+
+%-------------------------------------------------------------------------------

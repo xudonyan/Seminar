@@ -1,0 +1,741 @@
+%-------------------------------------------------------%
+%							%
+%	This is a sample to visualize the template.	%
+%							%
+%	Template: DONGBEI University Of finance and economics (DUFE)	%
+%							%
+%	Author: Xdy			%
+%							%
+%	Date: 15th April 2018			%
+%							%
+%							%
+%-------------------------------------------------------%
+
+\documentclass{beamer}
+\usetheme{UIBK} %Standard UIBK Template
+\usepackage{CJKutf8}
+\usepackage[utf8]{inputenc}
+\usepackage{default}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{fontenc}
+%\usepackage[default]{comfortaa}
+
+\author{Xdy}
+\title{Parameter estimation for text analysis}
+\subtitle{Gregor Heinrich}
+\institute{DONGBEI University \\  Of finance and economics}
+\date{\today}
+
+\begin{document}
+\begin{CJK*}{UTF8}{gbsn}
+%titlepage without header/footer and framenumbering
+\begin{frame}[plain,noframenumbering]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+	\tableofcontents
+\end{frame}
+
+
+%show table of contents at the beginning of every section
+\AtBeginSection[]{
+\begin{frame}<beamer>
+ \frametitle{Outline}
+ \tableofcontents[currentsection]
+\end{frame}
+}
+
+
+\section{Supplementary knowledge}
+\subsection{statistical distribution}
+%-------------------------------------------------------%
+%statistical distribution
+%-------------------------------------------------------%
+\subsubsection{Binomal and Multinomal}
+\begin{frame}{Binomal and Multinomal}
+%\begin{center}
+ $$b(n,p)\text{:} \quad p(k\vert n,p)=\binom{n}{k}p^k(1-p)^{n-k}$$
+\[Mult(\overrightarrow{n}|\overrightarrow{p},N)=\binom{\overrightarrow{n}}{N}\prod_k^Kp_k^{n_k}
+\]
+%\end{center}
+\end{frame}
+
+
+\subsubsection{Gama}
+\begin{frame}{Gama}
+%\begin{center}
+ $$
+\Gamma(\alpha)=\int_0^\infty x^{\alpha-1}e^{-x}dx\qquad \Gamma(n+1)=n\Gamma(n)=n!
+$$\\
+
+$$
+Gamma(\alpha,\lambda):\qquad P(x|\alpha,\lambda)=\frac{\lambda^\alpha}{\Gamma(x)}x^{\alpha-1}e^{-\lambda x},\qquad x\geqslant 0
+$$
+%\end{center}
+\end{frame}
+
+%-------------------------------------------------------%
+%Beta
+%-------------------------------------------------------%
+\subsubsection{Beta}
+\begin{frame}{Beta}
+%\begin{center}
+\begin{small}
+ $
+B(a,b)=\int_0^1x^{\alpha-1}(1-x)^{b-1}dx,\qquad B(a,b)=B(b,a)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
+$
+\begin{align*}
+Beta(a,b)P(x|a,b)&=\frac{1}{B(a,b)}x^{a-1}(1-x)^{b-1}\\ &=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}\quad 0<x<1
+\end{align*}
+\end{small}
+%\end{center}
+\end{frame}
+
+\begin{frame}{Beta}
+%\begin{center}
+\begin{itemize}
+	\item $Beta(1,1)\Longrightarrow Uniform(0,1)$
+	\item 次序统计量的概率密度函数:\qquad $x_{(k)}$\\
+	\begin{small}
+		\begin{align*}
+		P_k(x)=\frac{n!}{{(k-1)!(n-k)!}}&*F(x)^{k-1}*[1-F(x)]^{n-k}*p(x)\\
+		=\frac{\Gamma(n+1)}{{\Gamma(k)\Gamma(n-k+1)}}&*F(x)^{k-1}*[1-F(x)]^{n-k}*p(x)\\
+		\\
+		if\ x\sim Uniform(0,1),\quad then\ &p(x)=1\quad let\ \alpha=k,\ \beta=n-k+1,\ then\\
+		\\
+		P_k(x)=\frac{\Gamma(\alpha+\beta)}{{\Gamma(\alpha)\Gamma(\beta)}}*F(x)^{k-1}&*[1-F(x)]^{n-k}\sim Beta(\alpha,\beta)
+		\end{align*}
+		\end{small}
+\end{itemize}
+%\end{center}
+\end{frame}
+
+%-------------------------------------------------------%
+%Dirichlet
+%-------------------------------------------------------%
+\subsubsection{Dirichlet}
+\begin{frame}{Dirichlet}
+%\begin{center}
+$$
+Dir(\overrightarrow{\alpha}):\quad P(\overrightarrow{x}|\overrightarrow{\alpha})=\frac{1}{B(\overrightarrow{\alpha})}\prod_{i=1}^Kx_i^{\alpha_i-1}=\frac{\Gamma(\sum_{i=1}^K)}{\prod_{i=1}^K\Gamma(\alpha_i)}\prod_{i=1}^Kx_i^{\alpha_i-1}
+$$\\ $$\int Dir(\overrightarrow{\alpha})dx=\frac{1}{B(\overrightarrow{\alpha})}\int{\prod_{i=1}^K\Gamma(\alpha_i)}=\frac{1}{B(\overrightarrow{\alpha})}B(\overrightarrow{\alpha})=1$$
+%\end{center}
+\end{frame}
+
+\begin{frame}{Dirichlet}
+%\begin{center}
+$$
+Dir(\overrightarrow{\alpha}):\quad P(\overrightarrow{x}|\overrightarrow{\alpha})=\frac{1}{B(\overrightarrow{\alpha})}\prod_{i=1}^Kx_i^{\alpha_i-1}=\frac{\Gamma(\sum_{i=1}^K)}{\prod_{i=1}^K\Gamma(\alpha_i)}\prod_{i=1}^Kx_i^{\alpha_i-1}
+$$\\
+\begin{itemize}
+\item when k=3, three dimensional, we get:
+$$P(\overrightarrow{x}|\overrightarrow{\alpha})=\frac{\Gamma(\alpha_1+\alpha_2+\alpha_3)}{{\Gamma(\alpha_1)\Gamma(\alpha_2)\Gamma(\alpha_3)}}x_1^{\alpha_1-1}x_2^{\alpha_2-1}x_3^{\alpha_3-1}$$
+$$\Downarrow$$
+$$P(x_1,x_2,x_3|\alpha_1,\alpha_2,\alpha_3)$$
+\end{itemize}
+%\end{center}
+\end{frame}
+
+\begin{frame}{Dirichlet}
+%\begin{center}
+\begin{itemize}
+\item {次序统计量的联合概率密度函数:}$x_{(k)},x_{(j)}$
+\begin{small}
+\[P_{kj}=\frac{\Gamma(n+1)}{{\Gamma(k)\Gamma(n-k+1)}}*F(x_k)^{k-1}[F(x_j)-F(x_k)]^{j-k-1}[1-F(x_j)]^{n-j}*p(x)\]\\{if }$x\sim Uniform(0,1)${,then} $p(x_k)=p(x_j)=1$ {let}\ $\alpha_1=k,\alpha_2=k-j,\alpha_3=n-j+1 $ {then}
+$P_{kj}=\frac{\Gamma(\alpha_1+\alpha_2+\alpha_3)}{{\Gamma(\alpha_1)\Gamma(\alpha_2)\Gamma(\alpha_3)}}*F(x_k)^{\alpha_1}*[F(x_j)-F(x_k)]^{\alpha_2-1}*[1-F(x_j)]^{\alpha_3-1}$
+\end{small}	
+\end{itemize}
+%\end{center}
+\end{frame}
+
+
+\begin{frame}{Dirichlet}
+%\begin{center}
+\begin{itemize}
+\item {if} $\overrightarrow{P}\sim Dir$ {then:}$$E(\overrightarrow{P})=E(p_1,p_2,\dots)=(\frac{\alpha_1}{\sum_{i=1}^k\alpha_i},\frac{\alpha_2}{\sum_{i=1}^k\alpha_i},\dots,\frac{\alpha_k}{\sum_{i=1}^k\alpha_i})$$\\
+{Same as:}$$E(P)=\frac{a}{a+b},\qquad P\sim Beta(a,b)$$
+\end{itemize}
+%\end{center}
+\end{frame}
+
+
+
+
+%-------------------------------------------------------
+%Bayes Estimation
+%-------------------------------------------------------%
+\subsection{Bayes Estimation}
+\begin{frame}{Bayes Estimation}
+\begin{itemize}
+\item 	贝叶斯学派和古典学派对于参数的观点
+\item	贝叶斯学派的参数估计:
+\[
+\left.
+\begin{split}
+&\text{同等无知}\\
+&\text{共轭先验}\\
+&\vdots
+\end{split}
+\right\}  
+\text{先验分布}+\text{样本信息}=\text{后验分布}\Rightarrow \left\{
+\begin{split}
+&\text{后验分布最大}\\
+&\text{均值}\\
+&\vdots
+\end{split}
+\right.  
+\] 
+\end{itemize}
+\end{frame}
+
+\subsubsection{贝 叶 斯 公 式}
+\begin{frame}{贝 叶 斯 公 式}
+\begin{align*}
+\pi(\theta|m_1)&=\frac{\pi(\theta,m_1)}{\pi(m_1)}\\
+&=\frac{\pi(\theta)\pi(m_1|\theta)}{{\int \pi(\theta,m_1)d\theta}}\\
+&=\frac{\pi(\theta)\pi(m_1|\theta)}{\int {\pi(\theta)\pi(m_1|\theta)}d\theta}
+\end{align*}
+\end{frame}
+
+\begin{frame}{贝 叶 斯 公 式}
+Example 1.{不均匀硬币，正面概率}$\theta${，抛}$m${次，}$m_1${正 ，}$m_2${反，求}$\theta$
+\begin{itemize}
+\item Classical: $\qquad\hat{\theta}=\frac{m_1}{m}$
+\item {Bayes:Suppose}\quad $p(\theta)\sim Uniform(0,1),\quad p(m_1|\theta)\sim b(m,\theta)$ {we have:}
+\begin{small}
+
+\[
+p(\theta)=1,\quad p(m_1|\theta)=\binom{m_1}{m} \theta^{m_1}(1-\theta)^{m_2}\]
+
+\[p(m_1,\theta)=p(\theta)p(m_1|\theta)=p(m_1|\theta)\]
+\[
+p(m_1)=\int_0^1p(m_1,\theta)=\binom{m_1}{m}\int \theta_{m_1}(1-\theta)^{m_2}=\binom{m_1}{m}B(m_1+1,m_2+1)
+\]
+\[\therefore p(\theta|m_1)=\frac{1}{B(m_1+1,m_2+1)}\theta^{m_1}(1-\theta)^{m_2}\sim Beta(m_1+1,m_2+1)
+\]
+
+\end{small}
+\end{itemize}
+\end{frame}
+\subsubsection{几 个 概 念 }
+\begin{frame}{Conjugate prior distribution }
+\begin{itemize}
+\begin{small}
+\item  {Beta-Binomal Conjugate:}\[Beta(\theta|\alpha,\beta)+BinomCount(m_1,m_2)=Beta(\theta|\alpha+m_1,\beta+m_2)\]{see the Example 1}
+
+prior:$\qquad \theta\sim U(0,1)$\\  
+Sample:$\quad p(m_1|\theta)\sim b(m,\theta) $ 
+Posterior:$\pi(\theta|m_1)\sim Beta(m_1+1,m_2+1) $
+
+\end{small}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conjugate prior distribution }
+\begin{itemize}
+\begin{small}
+\item Dirichlet-Multinominal Conjugate\[Dir(\overrightarrow{p}|\overrightarrow{\alpha})+MultCount(\overrightarrow{m})=Dir(\overrightarrow{p}|\overrightarrow{\alpha}+\overrightarrow{m})\]
+Example 2:$\qquad$3 dimensional	\[Dir(k_1,k_2,k_3)+MultCount(m_1,m_2,m_3)=Dir(k_1+m_1,k_2+m_2,k_3+m_3)\]
+
+\end{small}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{分布的核与满条件概率分布}
+\begin{itemize}
+\begin{small}
+\item 分布的核\[b(n,p)\propto p^x(1-p)^{n-x}\qquad \quad Beta(a,b)\propto x^{a-1}(1-x)^{b-1}\]
+	 \[Gamma(\alpha,\lambda)\propto x^{\alpha-1}e^{-\lambda x}\qquad Did(\overrightarrow{\alpha})\propto \prod^kx_i^{\alpha_i-1}
+	\]
+\item Full Conditional distribution
+\end{small}
+\end{itemize}
+\end{frame}
+
+
+
+%-------------------------------------------------------%
+%statistical sampling
+%-------------------------------------------------------%
+\subsection{Statistical Sampling}
+\subsubsection{Classical Sampling}
+\begin{frame}{Classical Sampling}
+\begin{center}
+\begin{itemize}
+\item[1.] $U(0,1)$sampling
+\item[2.] $N(\mu,\theta)$sampling
+\item[3.] The low-dimensional and simple distribution sampling can use the similar method.But for the complicated or high-dimensional ,we can't get the sample by using classical method.
+\end{itemize}
+\end{center}
+\end{frame}
+
+\subsubsection{MCMC Sampling}
+\begin{frame}{Markov Chain}
+\begin{center}
+\begin{itemize}
+	\item $P(X_{t+1}=x|X_t,X_{t-1},\dots )=P(X_{t+1}=x|X_t)$
+	\item Example 3\\
+		\begin{center}
+      \includegraphics[width=0.4\textwidth]{picture/MC1.png}
+   	 \end{center}
+\end{itemize}
+\end{center}
+\end{frame}
+
+\begin{frame}{Markov Chain}
+使用矩阵的表示方式，转移概率矩阵记为
+	\begin{center}
+      \includegraphics[width=0.3\textwidth]{picture/MC2.png}
+   	 \end{center} 假设初始概率分布为 $\pi_0$=[0.21,0.68,0.11]，则我们可以计算前 n 代人的分布状况如下
+   	 \begin{center}
+      \includegraphics[width=0.4\textwidth]{picture/MC3.png}
+   	 \end{center}
+\end{frame}
+
+\begin{frame}{Markov Chain}
+我们换一个初始概率分布 $\pi_0$=[0.75,0.15,0.1] 试试看，继续计算前 n 代人的分布状况如下\begin{center}
+      \includegraphics[width=0.4\textwidth]{picture/MC4.png}
+   	 \end{center}
+\end{frame}
+
+
+\begin{frame}{Markov Chain}
+\begin{center}
+      \includegraphics[width=0.8\textwidth]{picture/MC5.png}
+   	 \end{center}我们发现，当 n 足够大的时候，这个$P^n$矩阵的每一行都是稳定地收敛到 π=[0.286,0.489,0.225] 这个概率分布。这个收敛现象并非是我们这个马氏链独有的，而是绝大多数马氏链的共同行为，关于马氏链的收敛我们有如下漂亮的定理：
+\end{frame}
+
+
+\begin{frame}{Markov Chain}
+\begin{block}{马氏链定理}
+   如果一个非周期马氏链具有转移概率矩阵$P$, 且它的任何两个状态是连通的，那么$\lim_{n\to\infty}P_{ij}^n$存在且与$i$无关,记$\lim_{n\to\infty}P_{ij}^n=\pi (j)$， 我们有:
+ \begin{small}
+ \begin{align*}
+ 1.\quad &\lim_{x\to\infty}P^n=
+    \begin{bmatrix}
+		\pi(1)&\pi(2)&\cdots&\pi(j)&\cdots\\
+		\pi(1)&\pi(2)&\cdots&\pi(j)&\cdots\\
+		\vdots&\vdots&\vdots&\vdots&\vdots\\
+		\pi(1)&\pi(2)&\cdots&\pi(j)&\cdots\\
+		\vdots&\vdots&\vdots&\vdots&\vdots
+\end{bmatrix}\\
+2.\quad &\pi(j)=\sum_{i=0}^\infty\pi(i)P_{ij}\\
+3.\quad &\pi\text{是方程}\pi P=\pi\text{的唯一非负解.}\\ 
+\pi\text{称为马氏}&\text{链的平稳分布。}
+ \end{align*}
+ \end{small}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{MCMC}
+\begin{center}
+对于给定的概率分布 $p(x)$, 我们希望能有便捷的方式生成它对应的样本。由于马氏链能收敛到平稳分布， 于是一个很的漂亮想法是：如果我们能构造一个转移矩阵为 $P$ 的马氏链，使得该马氏链的平稳分布恰好是$ p(x)$， 那么我们从任何一个初始状态$x_0$出发沿着马氏链转移, 得到一个转移序列$ x_0,x_1,x_2,⋯x_n,x_{n+1},\dots$,如果马氏链在第n步已经收敛了，于是我们就得到了 π(x) 的样本$ x_n,x_{n+1}\dots$
+\end{center}
+\end{frame}
+
+\begin{frame}{MCMC}
+\begin{block}{细
+细 致 平 稳 条 件}
+   如果非周期马氏链的转移矩阵$P$和分布$\pi(x)$满足:$$\pi(i)P_{ij}=\pi(j)P_{ji}$$则$\pi(x)$是马氏链的平稳分布，上式被称为细致平稳条件.
+\end{block}
+
+假设我们已经有一个转移矩阵为$Q$马氏链$q(i,j)$表示从状态$i$转移到状态 $j$ 的概率，, 显然，通常情况下\[p(i)q(ij)\neq p(j)q(j,i)\]我们可否对马氏链做一个改造，使得细致平稳条件成立呢？
+\end{frame}
+
+
+\begin{frame}{MCMC}
+\begin{center}
+引入一个$\alpha(i,j)$我们希望\[p(i)q(ij)\alpha(i,j)= p(j)q(j,i)\alpha(j,i)\]取什么样的$\alpha(i,j)$以上等式能成立呢？
+\end{center}
+\end{frame}
+
+\begin{frame}{MCMC}
+\begin{center}
+按照对称性，我们可以取\[\alpha(i,j)=p(j)q(j,i),\qquad \alpha(j,i)=p(i)q(ij)\]所以有
+\begin{equation}
+\label{detailed-balance}
+p(i) \underbrace{q(i,j)\alpha(i,j)}_{Q'(i,j)}
+= p(j) \underbrace{q(j,i)\alpha(j,i)}_{Q'(j,i)} \quad (**)
+\end{equation}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}{MCMC}
+\begin{center}
+      \includegraphics[width=0.5\textwidth]{picture/MCMCp.png}
+	\begin{block}{Algorithm 1 MCMC Sampling}
+	\includegraphics[width=0.9\textwidth]{picture/MCMC.png}
+	\end{block}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Metropolis-Hastings}
+\begin{center}
+	\begin{block}{Algorithm 2 Metropolis-Hastings Sampling}
+	\begin{center}
+      \includegraphics[width=0.9\textwidth]{picture/MH.png}
+    \end{center} 
+	\end{block}
+\end{center}
+\end{frame}
+
+\subsubsection{Gibbs Sampling}
+\begin{frame}{Gibbs Sampling}
+考察$x$坐标相同的两个点
+$A(x_1,y_1), B(x_1,y_2)$
+我们发现
+\begin{align*}
+p(x_1,y_1)p(y_2|x_1) = p(x_1)p(y_1|x_1)p(y_2|x_1) \\
+p(x_1,y_2)p(y_1|x_1) = p(x_1)p(y_2|x_1)p(y_1|x_1)
+\end{align*}
+所以得到
+\begin{equation}
+\label{gibbs-detailed-balance}
+p(x_1,y_1)p(y_2|x_1) = p(x_1,y_2)p(y_1|x_1)  \quad (***)
+\end{equation}
+即$$ p(A)p(y_2|x_1) = p(B)p(y_1|x_1) $$
+\end{frame}
+
+\begin{frame}{Gibbs Sampling}
+\begin{center}
+      \includegraphics[width=0.4\textwidth]{picture/ABCD.png}
+    \end{center} 
+\begin{align*}
+Q(A\rightarrow B) & = p(y_B|x_1) & \text{如果} \quad x_A=x_B=x_1 \\
+Q(A\rightarrow C) & = p(x_C|y_1) & \text{如果} \quad y_A=y_C=y_1 \\
+Q(A\rightarrow D) &= 0 & \text{其它} 
+\end{align*}
+$$ p(X)Q(X\rightarrow Y) = p(Y) Q(Y\rightarrow X) $$
+\end{frame}
+
+\begin{frame}{Gibbs Sampling}
+\begin{block}{2-Gibbs Sampling}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{picture/2Gibs.png}
+\end{center}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Gibbs Sampling}
+\begin{block}{n-Gibbs Sampling}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{picture/nGibs.png}
+\end{center}
+\end{block}
+\end{frame}
+
+%-------------------------------------------------------%
+%Text Model
+%-------------------------------------------------------%
+\section{Text Model}
+\begin{frame}
+
+\begin{center}
+	每篇文档从人的观察来说就是有序的词的序列$$d=(w_1, w_2, \cdots, w_n)$$.
+      \includegraphics[width=0.5\textwidth]{picture/docp.png}
+\end{center} 
+\end{frame}
+
+\subsection{Unigram Model}
+\begin{frame}{Unigram Model}
+\begin{center}
+假设我们的词典中一共有$V$个词$v_1, v_2, \cdots v_v$
+ \includegraphics[width=0.8\textwidth]{picture/gm1.jpeg}
+\end{center}
+\begin{center}
+\includegraphics[width=0.4\textwidth]{picture/u.jpeg}
+\end{center}
+\end{frame}
+
+\begin{frame}{Unigram Model}
+对于一篇文档$d=\overrightarrow{w}=(w_1, w_2, \cdots, w_n)$，该文档被生成的概率就是$$ p(\overrightarrow{w}) = p(w_1, w_2, \cdots, w_n) = p(w_1)p(w_2) \cdots p(w_n) $$所以如果语料中有多篇文档$\mathcal{W}=(\overrightarrow{w_1}, \overrightarrow{w_2},…,\overrightarrow{w_m})$，则该语料的概率是$$p(\mathcal{W})= p(\overrightarrow{w_1})p(\overrightarrow{w_2})\cdots p(\overrightarrow{w_m}) $$
+\end{frame}
+
+\begin{frame}{Unigram Model}
+假设语料中总的词频是$N$， 在所有的$N$个词中,如果我们关注每个词$v_i$的发生次数$n_i$，那么$\overrightarrow{n}=(n_1, n_2,\cdots, n_V)$正好是一个多项分布$$ p(\overrightarrow{n}) = Mult(\overrightarrow{n}|\overrightarrow{p}, N) = \binom{N}{\overrightarrow{n}} \prod_{k=1}^V p_k^{n_k} $$
+此时， 语料的概率是
+\begin{align*}
+p(\mathcal{W})= p(\overrightarrow{w_1})p(\overrightarrow{w_2}) \cdots p(\overrightarrow{w_m})
+= \prod_{k=1}^V p_k^{n_k}
+\end{align*}
+\end{frame}
+
+
+\begin{frame}{Unigram Model}
+我们很重要的一个任务就是估计上帝拥有的这个骰子的各个面的概率是多大，按照统计学家中频率派的观点，使用最大似然估计最大化$P(\mathcal{W})$，于是参数$p_i$的估计值就是$$ \hat{p_i} = \frac{n_i}{N} .$$
+\end{frame}
+
+\begin{frame}{贝叶斯Unigram Model}
+在贝叶斯学派看来，一切参数都是随机变量，以上模型中的骰子不是唯一固定的，它也是一个随机变量。所以按照贝叶斯学派的观点，上帝是按照以下的过程在玩游戏的
+\begin{center}
+      \includegraphics[width=0.7\textwidth]{picture/gm2.jpeg}
+\end{center} 
+
+\begin{center}
+      \includegraphics[width=0.5\textwidth]{picture/gm2p.jpeg}
+\end{center} 
+\end{frame}
+
+\begin{frame}{贝叶斯Unigram Model}
+$$ p(\overrightarrow{n}) = Mult(\overrightarrow{n}|\overrightarrow{p}, N) $$
+$$ Dir(\overrightarrow{p}|\overrightarrow{\alpha})= \frac{1}{\Delta(\overrightarrow{\alpha})} \prod_{k=1}^V p_k^{\alpha_k -1}\quad \overrightarrow{\alpha}=
+(\alpha_1, \cdots, \alpha_V) $$
+此处，
+$\Delta(\overrightarrow{\alpha})$
+就是归一化因子
+$Dir(\overrightarrow{\alpha})$，即
+$$ \Delta(\overrightarrow{\alpha}) = \int \prod_{k=1}^V p_k^{\alpha_k -1} d\overrightarrow{p} . $$
+可以推出后验分布是
+
+\[
+p(\overrightarrow{p}|\mathcal{W},\overrightarrow{\alpha})
+= Dir(\overrightarrow{p}|\overrightarrow{n}+ \overrightarrow{\alpha})
+= \frac{1}{\Delta(\overrightarrow{n}+\overrightarrow{\alpha})}
+\prod_{k=1}^V p_k^{n_k + \alpha_k -1} d\overrightarrow{p}
+\]
+\end{frame}
+
+
+\begin{frame}{贝叶斯Unigram Model}
+\begin{small}
+
+对每一个$p_i$， 我们用下式做参数估计
+$
+\hat{p_i} = \frac{n_i + \alpha_i}{\sum_{i=1}^V(n_i + \alpha_i)}
+$进一步，我们可以计算出文本语料的产生概率为
+\begin{align}
+p(\mathcal{W}|\overrightarrow{\alpha}) & = \int p(\mathcal{W}|\overrightarrow{p}) p(\overrightarrow{p}|\overrightarrow{\alpha})d\overrightarrow{p} \notag \\
+& = \int \prod_{k=1}^V p_k^{n_k} Dir(\overrightarrow{p}|\overrightarrow{\alpha}) d\overrightarrow{p} \notag \\
+& = \int \prod_{k=1}^V p_k^{n_k} \frac{1}{\Delta(\overrightarrow{\alpha})}
+\prod_{k=1}^V p_k^{\alpha_k -1} d\overrightarrow{p} \notag \\
+&= \frac{1}{\Delta(\overrightarrow{\alpha})}
+\int \prod_{k=1}^V p_k^{n_k + \alpha_k -1} d\overrightarrow{p} \notag \\
+& = \frac{\Delta(\overrightarrow{n}+\overrightarrow{\alpha})}{\Delta(\overrightarrow{\alpha})}
+\label{likelihood-dir-mult}
+\end{align}
+
+\end{small}
+\end{frame}
+
+
+
+\begin{frame}{贝叶斯Unigram Model}
+\begin{center}
+      \includegraphics[width=0.7\textwidth]{picture/doc1.jpeg}
+\end{center}
+\end{frame}
+%-------------------------------------------------------%
+%Topic Model and PLSA
+%-------------------------------------------------------%
+\subsection{Topic Model and PLSA}
+\begin{frame}{Topic Model and PLSA}
+
+人类思考和写文章的行为都可以认为是上帝的行为，那么在 PLSA 模型中，上帝是按照如下的游戏规则来生成文本的。
+\begin{center}
+      \includegraphics[width=0.8\textwidth]{picture/gm3.jpeg}
+\end{center} 
+\end{frame}
+
+\begin{frame}{Topic Model and PLSA}
+\begin{small}
+游戏中的$K$个topic-word 骰子，我们可以记为$\overrightarrow{\varphi}_1, \cdots, \overrightarrow{\varphi}_K$， 对于包含$M$篇文档的语料$C=(d_1, d_2, \cdots, d_M)$中的每篇文档$d_m$，都会有一个特定的doc-topic骰子$\overrightarrow{\theta}_m$，所有对应的骰子记为$\overrightarrow{\theta}_1, \cdots,\overrightarrow{\theta}_M$。为了方便，我们假设每个词$w$都是一个编号，对应到topic-word 骰子的面。于是在 PLSA 这个模型中，第$m$篇文档$d_m$
+中的每个词的生成概率为$$ p(w|d_m) = \sum_{z=1}^K p(w|z)p(z|d_m) = \sum_{z=1}^K \varphi_{zw} \theta_{mz}$$所以整篇文档的生成概率为
+$$ p(\overrightarrow{w}|d_m) = \prod_{i=1}^n \sum_{z=1}^K p(w_i|z)p(z|d_m) = \prod_{i=1}^n \sum_{z=1}^K \varphi_{zw_i} \theta_{dz} $$求解PLSA 这个 Topic Model 的过程汇总，模型参数并容易求解，可以使用著名的 EM 算法进行求得局部最优解
+\end{small}
+\end{frame}
+
+%-------------------------------------------------------%
+%LDA(Latent Dirichlet Allocation)
+%-------------------------------------------------------%
+\subsection{LDA(Latent Dirichlet Allocation)}
+\begin{frame}{LDA Model}
+对于上述的 PLSA 模型，贝叶斯学派显然是有意见的，doc-topic 骰子$\overrightarrow{\theta}_m$和 topic-word 骰子$\overrightarrow{\varphi}_k$都是模型中的参数，参数都是随机变量，怎么能没有先验分布呢？在 LDA 模型中, 上帝是按照如下的规则玩文档生成的游戏的
+\begin{center}
+      \includegraphics[width=0.7\textwidth]{picture/gm4.jpeg}
+\end{center} 
+\end{frame}
+
+
+\begin{frame}{LDA Model}
+假设语料库中有$M$篇文档，所有的的word和对应的topic如下表示
+\begin{small}
+
+\begin{align*}
+\overrightarrow{\mathbf{w}} &= (\overrightarrow{w}_1, \cdots, \overrightarrow{w}_M) \\
+\overrightarrow{\mathbf{z}} &= (\overrightarrow{z}_1, \cdots, \overrightarrow{z}_M)
+\end{align*}
+其中，$\overrightarrow{w}_m$表示第$m$篇文档中的词，$\overrightarrow{z}_m$示这些词对应的 topic 编号。
+
+\begin{center}
+      \includegraphics[width=0.4\textwidth]{picture/w-t.jpeg}
+\end{center} 
+
+\end{small}
+\end{frame}
+
+
+\begin{frame}{LDA Model}
+\begin{small}
+
+
+\begin{center}
+      \includegraphics[width=0.3\textwidth]{picture/w-t2.jpeg}
+\end{center} 
+这个概率图可以分解为两个主要的物理过程：
+\begin{itemize}
+\item $\overrightarrow{\alpha}\rightarrow \overrightarrow{\theta}_m \rightarrow z_{m,n}$， 这个过程表示在生成第$m$篇文档的时候，先从第一个坛子中抽了一个doc-topic 骰子$\overrightarrow{\theta}_m$， 然后投掷这个骰子生成了文档中第$n$个词的topic编号$z_{m,n}$
+\item $\overrightarrow{\beta} \rightarrow \overrightarrow{\varphi}_k \rightarrow w_{m,n} | k=z_{m,n}$， 这个过程表示用如下动作生成语料中第$m$篇文档的第$n$个词：在上帝手头的$K$个topic-word 骰子$\overrightarrow{\varphi}_k$中，挑选编号为$k=z_{m,n}$的那个骰子进行投掷，然后生成 word$w_{m,n}$；
+\end{itemize}
+\end{small}
+\end{frame}
+
+
+
+
+\begin{frame}{LDA Model}
+由于语料中$M$篇文档的 topics 生成过程相互独立，所以我们得到$M$个相互独立的Dirichlet-Multinomial 共轭结构，从而我们可以得到整个语料中 topics 生成概率
+\begin{align*}
+p(\overrightarrow{\mathbf{z}} |\overrightarrow{\alpha}) & = \prod_{m=1}^M p(\overrightarrow{z}_m |\overrightarrow{\alpha}) \notag \\
+&= \prod_{m=1}^M \frac{\Delta(\overrightarrow{n}_m+\overrightarrow{\alpha})}{\Delta(\overrightarrow{\alpha})} \quad\quad (*)
+\end{align*}
+\end{frame}
+
+
+
+\begin{frame}{LDA Model}
+而语料中$K$个 topics 生成words 的过程相互独立，所以我们得到$K$个相互独立的Dirichlet-Multinomial 共轭结构，从而我们可以得到整个语料中词生成概率
+\begin{align*}
+p(\overrightarrow{\mathbf{w}} |\overrightarrow{\mathbf{z}},\overrightarrow{\beta}) &= p(\overrightarrow{\mathbf{w}}’ |\overrightarrow{\mathbf{z}}’,\overrightarrow{\beta}) \notag \\
+&= \prod_{k=1}^K p(\overrightarrow{w}_{(k)} | \overrightarrow{z}_{(k)}, \overrightarrow{\beta}) \notag \\
+&= \prod_{k=1}^K \frac{\Delta(\overrightarrow{n}_k+\overrightarrow{\beta})}{\Delta(\overrightarrow{\beta})}  \quad\quad (**)
+\end{align*}
+\end{frame}
+
+
+
+\begin{frame}{LDA Model}
+结合 (*)  和 (**) 于是我们得到
+\begin{align*}
+p(\overrightarrow{\mathbf{w}},\overrightarrow{\mathbf{z}} |\overrightarrow{\alpha}, \overrightarrow{\beta}) &=
+p(\overrightarrow{\mathbf{w}} |\overrightarrow{\mathbf{z}}, \overrightarrow{\beta}) p(\overrightarrow{\mathbf{z}} |\overrightarrow{\alpha}) \notag \\
+&= \prod_{k=1}^K \frac{\Delta(\overrightarrow{n}_k+\overrightarrow{\beta})}{\Delta(\overrightarrow{\beta})}
+\prod_{m=1}^M \frac{\Delta(\overrightarrow{n}_m+\overrightarrow{\alpha})}{\Delta(\overrightarrow{\alpha})}   (***)
+\end{align*}
+\end{frame}
+
+
+
+
+\begin{frame}{Gibbs Sampling}
+语料库
+$\overrightarrow{\mathbf{z}}$中的第$i$个词我们记为$z_i$， 其中$i=(m,n)$是一个二维下标，对应于第$m$篇文档的第$n$个词，用$\neg i$表示去除下标为$i$的词。按照 Gibbs Sampling 算法的要，我们要求得任一个坐标轴$i$对应的条件分布$p(z_i = k|\overrightarrow{\mathbf{z}}_{\neg i},\overrightarrow{\mathbf{w}})$则由贝叶斯法则，我们容易得到
+\begin{align*}
+p(z_i = k|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}) \propto
+p(z_i = k, w_i = t |\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i}) \\
+\end{align*}
+$\overrightarrow{\theta}_m, \overrightarrow{\varphi}_k$
+的后验分布都是 Dirichlet:
+\begin{align*}
+p(\overrightarrow{\theta}_m|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i})
+&= Dir(\overrightarrow{\theta}_m| \overrightarrow{n}_{m,\neg i} + \overrightarrow{\alpha}) \\
+p(\overrightarrow{\varphi}_k|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i})
+&= Dir( \overrightarrow{\varphi}_k| \overrightarrow{n}_{k，\neg i} + \overrightarrow{\beta})
+\end{align*}
+\end{frame}
+
+
+
+\begin{frame}{Gibbs Sampling}
+\begin{small}
+\begin{align*}
+&p(z_i = k|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}) \propto
+p(z_i = k, w_i = t |\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i}) \\
+&= \int p(z_i = k, w_i = t, \overrightarrow{\theta}_m,\overrightarrow{\varphi}_k |
+\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i}) d \overrightarrow{\theta}_m d \overrightarrow{\varphi}_k \\
+&= \int p(z_i = k, \overrightarrow{\theta}_m|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i})
+p(w_i = t, \overrightarrow{\varphi}_k | \overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i})
+d \overrightarrow{\theta}_m d \overrightarrow{\varphi}_k \\
+&= \int p(z_i = k |\overrightarrow{\theta}_m) p(\overrightarrow{\theta}_m|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i})
+ p(w_i = t |\overrightarrow{\varphi}_k) p(\overrightarrow{\varphi}_k|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i})d \overrightarrow{\theta}_m d \overrightarrow{\varphi}_k \\
+&= \int p(z_i = k |\overrightarrow{\theta}_m) Dir(\overrightarrow{\theta}_m| \overrightarrow{n}_{m,\neg i} + \overrightarrow{\alpha}) d \overrightarrow{\theta}_m \\
+& \hspace{0.2cm} \int p(w_i = t |\overrightarrow{\varphi}_k) Dir( \overrightarrow{\varphi}_k| \overrightarrow{n}_{k,\neg i} + \overrightarrow{\beta}) d \overrightarrow{\varphi}_k \\
+&= \int \theta_{mk} Dir(\overrightarrow{\theta}_m| \overrightarrow{n}_{m,\neg i} + \overrightarrow{\alpha}) d \overrightarrow{\theta}_m
+\cdot \int \varphi_{kt} Dir( \overrightarrow{\varphi}_k| \overrightarrow{n}_{k,\neg i} + \overrightarrow{\beta}) d \overrightarrow{\varphi}_k \\
+&= E(\theta_{mk}) \cdot E(\varphi_{kt})= \hat{\theta}_{mk} \cdot \hat{\varphi}_{kt} \\
+\label{gibbs-sampling-deduction}
+\end{align*}
+\end{small}
+\end{frame}
+
+\begin{frame}{Gibbs Sampling}
+\begin{small}
+
+借助于前面介绍的Dirichlet 参数估计的公式 ，我们有
+
+\begin{align*}
+\hat{\theta}_{mk} &= \frac{n_{m,\neg i}^{(k)} + \alpha_k}{\sum_{k=1}^K (n_{m,\neg i}^{(k)} + \alpha_k)} \\
+\hat{\varphi}_{kt} &= \frac{n_{k,\neg i}^{(t)} + \beta_t}{\sum_{t=1}^V (n_{k,\neg i}^{(t)} + \beta_t)}
+\end{align*}
+
+于是，我们最终得到了 LDA 模型的 Gibbs Sampling 公式
+
+\[
+\label{gibbs-sampling}
+p(z_i = k|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}) \propto
+\frac{n_{m,\neg i}^{(k)} + \alpha_k}{\sum_{k=1}^K (n_{m,\neg i}^{(k)} + \alpha_k)}
+\cdot \frac{n_{k,\neg i}^{(t)} + \beta_t}{\sum_{t=1}^V (n_{k,\neg i}^{(t)} + \beta_t)}
+\]
+\end{small}
+\end{frame}
+
+\begin{frame}{Training and Inference}
+有了 LDA 模型，当然我们的目标有两个
+\begin{itemize}
+\item 估计模型中的参数$\overrightarrow{\varphi}_1, \cdots, \overrightarrow{\varphi}_K$和$\overrightarrow{\theta}_1, \cdots, \overrightarrow{\theta}_M$
+\item 对于新来的一篇文档$doc_{new}$，我们能够计算这篇文档的 topic 分布$\overrightarrow{\theta}_{new}$
+\end{itemize}
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{picture/doc2.jpg}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Training and Inference}
+
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{picture/T.jpeg}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{Training and Inference}
+
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{picture/I.jpeg}
+\end{center}
+\end{frame}
+
+
+
+
+
+
+%final slide
+\begin{frame}[plain,noframenumbering]
+ \begin{beamercolorbox}[wd=\paperwidth, ht=1.4cm,rounded=true,shadow=true]{final slide}
+      \begin{center}
+	{\huge Thank you for your attention!}
+      \end{center}
+ \end{beamercolorbox}
+\end{frame}
+\end{CJK*}
+\end{document}
+

@@ -1,0 +1,18 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Supplementary knowledge}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{statistical distribution}{4}{0}{1}
+\beamer@subsubsectionintoc {1}{1}{1}{Binomal and Multinomal}{4}{0}{1}
+\beamer@subsubsectionintoc {1}{1}{2}{Gama}{5}{0}{1}
+\beamer@subsubsectionintoc {1}{1}{3}{Beta}{6}{0}{1}
+\beamer@subsubsectionintoc {1}{1}{4}{Dirichlet}{8}{0}{1}
+\beamer@subsectionintoc {1}{2}{Bayes Estimation}{12}{0}{1}
+\beamer@subsubsectionintoc {1}{2}{1}{贝 叶 斯 公 式}{13}{0}{1}
+\beamer@subsubsectionintoc {1}{2}{2}{几 个 概 念 }{15}{0}{1}
+\beamer@subsectionintoc {1}{3}{Statistical Sampling}{18}{0}{1}
+\beamer@subsubsectionintoc {1}{3}{1}{Classical Sampling}{18}{0}{1}
+\beamer@subsubsectionintoc {1}{3}{2}{MCMC Sampling}{19}{0}{1}
+\beamer@subsubsectionintoc {1}{3}{3}{Gibbs Sampling}{30}{0}{1}
+\beamer@sectionintoc {2}{Text Model}{34}{0}{2}
+\beamer@subsectionintoc {2}{1}{Unigram Model}{36}{0}{2}
+\beamer@subsectionintoc {2}{2}{Topic Model and PLSA}{44}{0}{2}
+\beamer@subsectionintoc {2}{3}{LDA(Latent Dirichlet Allocation)}{46}{0}{2}

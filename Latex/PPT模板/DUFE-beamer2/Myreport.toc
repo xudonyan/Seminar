@@ -1,0 +1,7 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{理论回顾 }{3}{0}{1}
+\beamer@sectionintoc {2}{转移支付制度}{8}{0}{2}
+\beamer@sectionintoc {3}{理论分析}{11}{0}{3}
+\beamer@sectionintoc {4}{实证策略和数据}{19}{0}{4}
+\beamer@sectionintoc {5}{实证结果}{23}{0}{5}
+\beamer@sectionintoc {6}{结论}{30}{0}{6}

@@ -1,0 +1,63 @@
+
+\section{理论回顾 } 
+%-------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{精确断点回归}
+\framesubtitle{---三个假设}
+\begin{itemize}
+	\item 断点假设：\[
+	p^+=\lim\limits_{x\longrightarrow x_0^+}E[D_i|X_i=x],\qquad
+	p^-=\lim\limits_{x\longrightarrow x_0^-}E[D_i|X_i=x]
+	\]存在，且$p^+\neq p^-$。
+	\item 连续性假设：
+	\[
+	\lim\limits_{\varepsilon \longrightarrow 0}E[Y_{ji}|X_i=x_0+\varepsilon]=
+	\lim\limits_{\varepsilon \longrightarrow 0}E[Y_{ji}|X_i=x_0-\varepsilon],j=0,1
+	\]
+	\item 局部随机化假设：
+	\[
+	(Y_{1i},Y_{0i})\perp D_i|X_i\quad \epsilon \quad \delta(x_0)
+	\]
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{精确断点回归}
+\framesubtitle{---定理}
+\includegraphics[width=\textwidth]{image/dl.png}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}
+	\frametitle{模糊断点回归}
+	\framesubtitle{---三个假设}
+	\begin{itemize}
+		\item 断点假设：\[
+		p^+=\lim\limits_{x\longrightarrow x_0^+}E[D_i|X_i=x],\qquad
+		p^-=\lim\limits_{x\longrightarrow x_0^-}E[D_i|X_i=x]
+		\]存在，且$p^+\neq p^-$。
+		\item 连续性假设：
+		\[
+		\lim\limits_{\varepsilon \longrightarrow 0}E[Y_{ji}|X_i=x_0+\varepsilon]=
+		\lim\limits_{\varepsilon \longrightarrow 0}E[Y_{ji}|X_i=x_0-\varepsilon],j=0,1
+		\]
+		\item 独立性假设：
+		\[
+		(Y_{1i}-Y_{0i})\perp D_i|X_i\quad \epsilon \quad \delta(x_0)
+		\]
+	\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}
+	\frametitle{模糊断点回归}
+	\framesubtitle{---定理}
+	\includegraphics[width=\textwidth]{image/d2.png}
+\end{frame}
+
+%-------------------------------------------------------------------------------
