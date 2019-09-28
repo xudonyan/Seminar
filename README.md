@@ -1,6 +1,6 @@
 # 更新内容
 
-1. 两例因果推断，包括源代码和数据（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E6%BA%90%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%95%B0%E6%8D%AE)）
+1. 因果推断经典案例，包括源代码和数据（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E6%BA%90%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%95%B0%E6%8D%AE)）
 2. Latex教程和PPT模板（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/Latex)）
 3. 本次讨论班ppt以及问答记录（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E7%A0%94%E8%AE%A8%E7%8F%AD%E8%AE%B0%E5%BD%95)）
 4. 经典文献荐读（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E7%BB%8F%E5%85%B8%E6%96%87%E7%8C%AE%E8%8D%90%E8%AF%BB)）
