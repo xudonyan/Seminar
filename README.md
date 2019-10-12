@@ -1,8 +1,17 @@
 # 更新内容
 
+1. 本次讨论班ppt
+2. Latex模板
+3. Excel或者word表格转Latex:
+   - 在线转:[在线网址](http://www.tablesgenerator.com/) 以及[教程](https://zhuanlan.zhihu.com/p/22576629)
+   - 通过Excel,使用excel2latex插件,[插件下载地址](https://ctan.org/tex-archive/support/excel2latex/)  (已上传至Latex文件夹下)以及[教程](https://blog.csdn.net/Jiajikang_jjk/article/details/80788501)
+4. 新增因果推断经典案例，包括源代码和数据
+
+# 快捷访问
+
 1. 因果推断经典案例，包括源代码和数据（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B)）
 2. Latex教程和PPT模板（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/Latex)）
-3. 本次讨论班ppt以及问答记录（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E7%A0%94%E8%AE%A8%E7%8F%AD%E8%AE%B0%E5%BD%95)）
+3. 本次讨论班ppt（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E7%A0%94%E8%AE%A8%E7%8F%AD%E8%AE%B0%E5%BD%95)）
 4. 经典文献荐读（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E7%BB%8F%E5%85%B8%E6%96%87%E7%8C%AE%E8%8D%90%E8%AF%BB)）
 5. 文献查找方法（[点击直达](https://github.com/xudonyan/Seminar/tree/2019-%E7%A7%8B%E5%AD%A3/%E6%9F%A5%E6%89%BE%E6%96%87%E7%8C%AE%E6%8A%80%E5%B7%A7)）
 
