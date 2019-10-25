@@ -1,10 +1,6 @@
 # 更新内容
 
 1. 本次讨论班ppt
-2. Latex模板
-3. Excel或者word表格转Latex:
-   - 在线转:[在线网址](http://www.tablesgenerator.com/) 以及[教程](https://zhuanlan.zhihu.com/p/22576629)
-   - 通过Excel,使用excel2latex插件,[插件下载地址](https://ctan.org/tex-archive/support/excel2latex/)  (已上传至Latex文件夹下)以及[教程](https://blog.csdn.net/Jiajikang_jjk/article/details/80788501)
 4. 新增因果推断经典案例，包括源代码和数据
 
 # 快捷访问
